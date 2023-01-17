@@ -1,0 +1,52 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: https://mozilla.github.io/nunjucks/ -->
+<!-- pug: https://pugjs.org/ -->
+<!-- haml: http://haml.info/ -->
+<!-- hbs(handlebars): http://handlebarsjs.com/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Welcome to Glitch!</title>
+  <meta name="description" content="A cool thing made with Glitch">
+  <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- import the webpage's stylesheet -->
+  <link rel="stylesheet" href="/static/css/style.css">
+
+  <!-- import the webpage's client-side javascript file -->
+  <script src="/static/js/client.js" defer></script>
+</head>
+
+<body id="main">
+  <main>
+    <div id="wish-form">
+      <div>
+        <p class="bold">Ho ho ho, what you want for christmas?</p>
+        <br />
+        <form method="post">
+          <label class="lable">Who are You?</label>
+          <input name="userid" id="username" placeholder="charlie.brown" />
+          <p id="userError">*Your name is required.</p>
+          <lable class="lable"> What do you want for christmas?</lable>
+          <textarea name="wish" id="userwish" rows="10" cols="45" maxlength="100" placeholder="Gifts!"></textarea>
+          <p id="wishError">*Please add your wish.</p>
+          <button type="submit" id="submit-letter">Send</button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+  <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+  <script src="https://button.glitch.me/button.js"></script>
+</body>
+
+</html>

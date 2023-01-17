@@ -1,0 +1,112 @@
+/* styles */
+/* called by your view template */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+}
+
+h1 {
+  font-style: italic;
+  color: #373fff;
+}
+
+.bold {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+p {
+  max-width: 600px;
+  color: white;
+}
+
+input,
+textarea {
+  display: block;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  padding: 5px;
+  width: -webkit-fill-available;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+.lable {
+  text-align: center;
+  color: white;
+}
+
+button {
+  font-size: 16px;
+  border-radius: 3px;
+  background-color: lightgrey;
+  border: 1px solid grey;
+  cursor: pointer;
+  border-radius: 8px;
+  width: -webkit-fill-available;
+  padding: 12px;
+  background-color: greenyellow;
+  opacity: 0.8;
+}
+
+button:hover {
+  background-color: greenyellow;
+  opacity: 1;
+}
+
+button:active {
+  box-shadow: none;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+footer {
+  margin-top: 50px;
+  padding-top: 25px;
+  border-top: 1px solid lightgrey;
+}
+
+/* Main form */
+#main {
+  background: url("https://cdn.glitch.global/12ac786b-aa53-4184-abe1-9b60c62a498a/main.webp?v=1673899726111")
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#wish-form {
+  flex-direction: row;
+  display: flex;
+  margin-left: 24vh;
+  align-items: center;
+  min-height: 90vh;
+}
+
+#wish-form div {
+  border: 2px solid gray;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+#userError,
+#wishError {
+  display: none;
+  color: red;
+  margin-top: -12px;
+}
+
+@media only screen and (max-width: 1400px) {
+  #wish-form {
+    margin-left: 0;
+    display: block;
+  }
+}
