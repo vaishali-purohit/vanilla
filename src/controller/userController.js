@@ -1,13 +1,23 @@
 const { verfiyUserRequest } = require("../service/userService");
+const { validationResult } = require("express-validator");
+const BadRequest = require("../exceptions/BadRequest");
 
-const registerUserRequest = ((req, res, next) => {
+const registerUserRequest = (req, res, next) => {
   try {
+    validateRequest(req);
     const { username, userWish } = req.body;
     verfiyUserRequest(username, userWish);
     res.send(`Request has been received successfully`);
   } catch (err) {
-    next(err)
+    res.send(err.status, { error: err.message });
   }
-})
+};
 
-module.exports = { registerUserRequest }
+const validateRequest = (req) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    throw new BadRequest(error.array()[0].msg);
+  }
+};
+
+module.exports = { registerUserRequest };

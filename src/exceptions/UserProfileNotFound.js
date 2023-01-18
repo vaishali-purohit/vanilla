@@ -5,6 +5,7 @@ class UserProfileNotFound extends Error {
 
     this.name = this.constructor.name
     this.status = 404
+    this.message = message
   }
 
   statusCode() {

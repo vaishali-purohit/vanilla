@@ -19,12 +19,12 @@ const checkUserExist = (userName) => {
 const checkUserEligibleByAge = (userId) => {
   const index = userProfiles.findIndex(u => u.userUid === userId);
   if (index === -1) {
-    throw new UserProfileNotFound(`No user profile match for username: ${userId}`);
+    throw new UserProfileNotFound(`No user profile match for username!`);
   }
 
   const currentAge = getAgeByBirthDate(userProfiles[index].birthdate);
   if (currentAge > USER_RESTRICTED_AGE) {
-    throw new UserAgeExceed(`User age is more than 10 years, userId: ${userId}`);
+    throw new UserAgeExceed(`User age is more than 10 years!`);
   }
 
   return userProfiles[index];

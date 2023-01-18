@@ -5,6 +5,7 @@ class UserAgeExceed extends Error {
 
     this.name = this.constructor.name
     this.status = 400
+    this.message = message
   }
 
   statusCode() {
