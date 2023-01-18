@@ -1,7 +1,8 @@
-const userRequests = [];
+const UserRequest = require("../models/UserRequest");
 
-const saveUserRequest = (request) => {
-  userRequests.push(request);
+const saveUserRequest = async (request) => {
+  const userDetails = new UserRequest(request);
+  await userDetails.save();
 };
 
-module.exports = { saveUserRequest, userRequests };
+module.exports = { saveUserRequest };

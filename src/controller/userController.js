@@ -2,11 +2,11 @@ const { verfiyUserRequest } = require("../service/userService");
 const { validationResult } = require("express-validator");
 const BadRequest = require("../exceptions/BadRequest");
 
-const registerUserRequest = (req, res, next) => {
+const registerUserRequest = async (req, res, next) => {
   try {
     validateRequest(req);
     const { username, userWish } = req.body;
-    verfiyUserRequest(username, userWish);
+    await verfiyUserRequest(username, userWish);
     res.send(`Request has been received successfully`);
   } catch (err) {
     res.send(err.status, { error: err.message });

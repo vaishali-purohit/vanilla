@@ -1,26 +1,26 @@
 const { getAgeByBirthDate } = require("./helper");
 const { USER_RESTRICTED_AGE } = require("../constants/user");
 
-const users = require("../data/user_data.json");
-const userProfiles = require("../data/user_profile_data.json");
 const UserNotFound = require("../exceptions/UserNotFound");
 const UserProfileNotFound = require("../exceptions/UserProfileNotFound");
 const UserAgeExceed = require("../exceptions/UserAgeExceed");
 
-const checkUserExist = (userName) => {
-  const index = users.findIndex(
+const checkUserExist = (userName, userList) => {
+  const index = userList.findIndex(
     (user) => user.username === userName.toLowerCase()
   );
+
   if (index === -1) {
     throw new UserNotFound(
       `No match for username: ${userName}, Please register yourself first.`
     );
   }
-  return users[index];
+  return userList[index];
 };
 
-const checkUserEligibleByAge = (userId) => {
+const checkUserEligibleByAge = (userId, userProfiles) => {
   const index = userProfiles.findIndex((u) => u.userUid === userId);
+
   if (index === -1) {
     throw new UserProfileNotFound(
       `No user profile match for username, Please register yourself first.`

@@ -46,7 +46,6 @@ const WishRequest = async ({ username, userWish }) => {
 
 const redirectToSuccess = async (username, userWish) => {
   const res = await WishRequest({ username, userWish });
-
   if (res.status == 200) {
     navigateTo("/success");
   } else {

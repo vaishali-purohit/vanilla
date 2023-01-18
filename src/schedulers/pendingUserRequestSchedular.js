@@ -4,22 +4,33 @@ const {
   REQUEST_IN_PROGRESS,
   REQUEST_COMPLETED,
 } = require("../constants/userRequest");
-const { userRequests } = require("../database/userRequest");
 const { sendEmail } = require("../notifications/email");
+const {
+  getUserRequestByStatus,
+  bulkUpdateUserRequestByStatus,
+} = require("../service/userService");
 
-const processRequests = () => {
-  console.log(userRequests);
+const processRequests = async () => {
   let emailText = "";
+  const data = [];
+  const userRequests = await getUserRequestByStatus(REQUEST_IN_PROGRESS);
+
   for (const userRequest of userRequests) {
     if (userRequest.status === REQUEST_IN_PROGRESS) {
       emailText =
         emailText +
         `username: ${userRequest.username}\naddress: ${userRequest.address}\nwish: ${userRequest.userWish}\n\n`;
-      userRequest.status = REQUEST_COMPLETED;
+      data.push({
+        updateOne: {
+          filter: { _id: userRequest._id },
+          update: { $set: { status: REQUEST_COMPLETED } },
+        },
+      });
     }
   }
 
   if (emailText.length > 0) {
+    await bulkUpdateUserRequestByStatus(data);
     sendEmail(emailText);
     console.log(emailText);
   }

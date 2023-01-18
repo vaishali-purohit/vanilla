@@ -13,11 +13,10 @@ dotenv.config();
 app.use(bodyParser());
 app.use(morgan());
 
-// we've started you off with Express,
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
 const userRouter = require("./src/routes/userRouter");
 const { errorHandler } = require("./src/middleware/errorHandler");
 const pendingUserRequestSchedular = require("./src/schedulers/pendingUserRequestSchedular");
+const { wishListDb } = require("./src/database/mongoose");
 
 app.use(cors());
 
@@ -25,14 +24,14 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// configuring global error handler
-app.use(errorHandler);
+app.use(errorHandler); // configuring global error handler
 
-// configuring routes
-app.use("/api/v1/users/", userRouter);
+app.use("/api/v1/users/", userRouter); // configuring routes
 
-// http://expressjs.com/en/starter/static-files.html
-app.use("/static", express.static(path.resolve(__dirname, "src/frontend", "static")));
+app.use(
+  "/static",
+  express.static(path.resolve(__dirname, "src/frontend", "static"))
+);
 
 app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/src/frontend/index.html");
@@ -41,6 +40,6 @@ app.get("/*", (req, res) => {
 // listen for requests :)
 const listener = app.listen(process.env.PORT || 3000, async function () {
   console.log("Your app is listening on port " + listener.address().port);
-  // start cron job for sending pending stats on mail
-  pendingUserRequestSchedular.start();
+  await wishListDb(); // Connection Establish to MongoDB
+  await pendingUserRequestSchedular.start(); // start cron job for sending pending status on mail
 });
