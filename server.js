@@ -41,7 +41,6 @@ app.get("/*", (req, res) => {
 // listen for requests :)
 const listener = app.listen(process.env.PORT || 3000, async function () {
   console.log("Your app is listening on port " + listener.address().port);
-  console.log("Here I'm");
   // start cron job for sending pending stats on mail
   pendingUserRequestSchedular.start();
 });

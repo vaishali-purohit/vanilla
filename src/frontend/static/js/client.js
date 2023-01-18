@@ -6,9 +6,7 @@ import { navigateTo } from "./index.js";
 const addAnWish = (event) => {
   event.preventDefault();
   let userName = document.getElementById("username").value;
-  console.log(userName);
   let userWish = document.getElementById("userwish").value;
-  console.log(userWish);
 
   if (userName && userWish) {
     return redirectToSuccess(userName, userWish);
@@ -25,7 +23,7 @@ const addAnWish = (event) => {
 };
 
 const WishRequest = async ({ username, userWish }) => {
-  console.log(username, userWish);
+  const origin = location.origin;
   const config = {
     headers: {
       "Content-Type": "application/JSON",
@@ -34,11 +32,10 @@ const WishRequest = async ({ username, userWish }) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:3000/api/v1/users/register-request",
+      `${origin}/api/v1/users/register-request`,
       { username, userWish },
       config
     );
-    console.log(response);
 
     return response;
   } catch (e) {
@@ -49,7 +46,6 @@ const WishRequest = async ({ username, userWish }) => {
 
 const redirectToSuccess = async (username, userWish) => {
   const res = await WishRequest({ username, userWish });
-  console.log(res, "redirected");
 
   if (res.status == 200) {
     navigateTo("/success");
