@@ -13,7 +13,10 @@ const wishListDb = async () => {
   try {
     const dbURL = `mongodb+srv://${username}:${password}@${cluster}.mongodb.net/${database}?retryWrites=true&w=majority`;
     await mongoose.set("strictQuery", false);
-    await mongoose.connect(dbURL);
+    await mongoose.connect(dbURL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
 
     console.log(`MongoDB Connected: ${database}`);
   } catch (err) {
