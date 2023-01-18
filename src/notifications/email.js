@@ -29,7 +29,7 @@ const sendEmail = async (emailText) => {
     await mailTransporter.sendMail(mailDetails);
   } catch (err) {
     console.log(
-      `error occured while sending email for user: ${userDetails.username} ${err}`
+      `error occured while sending email for user: ${err}`
     );
   }
 };
