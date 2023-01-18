@@ -21,7 +21,8 @@ export default class extends AbstractView {
       <div>
         <img src="https://cdn.glitch.global/12ac786b-aa53-4184-abe1-9b60c62a498a/sad.jpg?v=1673942507012" alt="sad" />
         <div class="text">
-          <p>Sorry! You are not registered or age is above 10 year.</p>
+          <p>Sorry! Your request is not granted.</p>
+          <p id="message"></p>
         </div>
       </div>
     </div>

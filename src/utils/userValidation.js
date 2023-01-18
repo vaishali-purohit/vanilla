@@ -7,19 +7,24 @@ const UserNotFound = require("../exceptions/UserNotFound");
 const UserProfileNotFound = require("../exceptions/UserProfileNotFound");
 const UserAgeExceed = require("../exceptions/UserAgeExceed");
 
-
 const checkUserExist = (userName) => {
-  const index = users.findIndex(user => user.username === userName.toLowerCase())
+  const index = users.findIndex(
+    (user) => user.username === userName.toLowerCase()
+  );
   if (index === -1) {
-    throw new UserNotFound(`No match for username: ${userName}`);
+    throw new UserNotFound(
+      `No match for username: ${userName}, Please register yourself first.`
+    );
   }
   return users[index];
-}
+};
 
 const checkUserEligibleByAge = (userId) => {
-  const index = userProfiles.findIndex(u => u.userUid === userId);
+  const index = userProfiles.findIndex((u) => u.userUid === userId);
   if (index === -1) {
-    throw new UserProfileNotFound(`No user profile match for username!`);
+    throw new UserProfileNotFound(
+      `No user profile match for username, Please register yourself first.`
+    );
   }
 
   const currentAge = getAgeByBirthDate(userProfiles[index].birthdate);
@@ -28,6 +33,6 @@ const checkUserEligibleByAge = (userId) => {
   }
 
   return userProfiles[index];
-}
+};
 
-module.exports = { checkUserExist, checkUserEligibleByAge }
+module.exports = { checkUserExist, checkUserEligibleByAge };

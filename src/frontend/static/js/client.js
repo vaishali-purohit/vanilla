@@ -55,6 +55,12 @@ const redirectToSuccess = async (username, userWish) => {
     navigateTo("/success");
   } else {
     navigateTo("/error");
+
+    setTimeout(() => {
+      const errorMessage = res.response?.data?.error;
+      const paragraph = document.getElementById("message");
+      paragraph.textContent += errorMessage;
+    }, 500);
   }
 };
 
