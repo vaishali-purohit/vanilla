@@ -58,8 +58,10 @@ const redirectToSuccess = async (username, userWish) => {
 
     setTimeout(() => {
       const errorMessage = res.response?.data?.error;
-      const paragraph = document.getElementById("message");
-      paragraph.textContent += errorMessage;
+      if (errorMessage || errorMessage !== undefined) {
+        const paragraph = document.getElementById("message");
+        paragraph.textContent += errorMessage;
+      }
     }, 500);
   }
 };
