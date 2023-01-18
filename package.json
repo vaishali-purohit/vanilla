@@ -35,6 +35,7 @@
   "keywords": [
     "node",
     "glitch",
-    "express"
+    "express",
+    "mongoose"
   ]
 }
