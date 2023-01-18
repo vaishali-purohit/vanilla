@@ -31,6 +31,7 @@ const sendEmail = async (emailText) => {
     console.log(
       `error occured while sending email for user: ${err}`
     );
+    throw err;
   }
 };
 
