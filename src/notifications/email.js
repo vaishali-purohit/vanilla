@@ -15,6 +15,7 @@ const mailTransporter = nodemailer.createTransport({
     user: process.env.EMAIL_USERNAME,
     pass: process.env.EMAIL_PASSWORD,
   },
+  tls: { rejectUnauthorized: false },
 });
 
 const sendEmail = async (emailText) => {
@@ -28,9 +29,7 @@ const sendEmail = async (emailText) => {
 
     await mailTransporter.sendMail(mailDetails);
   } catch (err) {
-    console.log(
-      `error occured while sending email for user: ${err}`
-    );
+    console.log(`error occured while sending email for user: ${err}`);
     throw err;
   }
 };
